@@ -16,10 +16,10 @@ io.on('connection', (socket) => {
     console.log('New Websocket connection')
 
     socket.emit('message','WELCOME!')
+    socket.broadcast.emit('message', 'A new user joined!')
 
     socket.on('sendMessage', (message) => {
-        io.emit('message', message)
-        
+        io.emit('message', message)        
     })
 })
 
