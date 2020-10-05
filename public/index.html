@@ -1,32 +1,52 @@
 <!DOCTYPE html>
 <html>
 
-<head></head>
+<head>
+    <title>Chat App</title>
+    <link rel="icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="/css/styles.min.css">
+</head>
 
 <body>
-    Chat App
+    <div class="chat">
+        <div class="chat__sidebar"></div>
 
-    <div id="messages"></div>
+        <div class="chat__main">
+            <div id="messages" class="chat__messages"></div>
 
-    <form id="messageForm">
-        <input name="message" placeholder="Message">
-        <button type="submit">Send</button>
-    </form>
+            <div class="compose">
+                <form id="messageForm">
+                    <input name="message" placeholder="Message">
+                    <button type="submit">Send</button>
+                </form>
 
-    <button id="sendLocation">Send Location</button>
+                <button id="sendLocation">Send Location</button>
+            </div>
+
+        </div>
+    </div>
 
     <script id="messageTemplate" type="text/html">
-        <div>
+        <div class="message">
+            <p>
+                <span class="message__name">Some User Name</span>
+                <span class="message__meta">{{createdAt}}</span>
+            </p>
             <p>{{message}}</p>
         </div>
     </script>
 
     <script id="locationMessageTemplate" type="text/html">
-        <div>
+        <div class="message">
+            <p>
+                <span class="message__name">Some User Name</span>
+                <span class="message__meta">{{createdAt}}</span>
+            </p>
             <p><a href="{{url}}" target="_blank">My current location</a></p>
         </div>
     </script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js" integrity="sha512-Izh34nqeeR7/nwthfeE0SI3c8uhFSnqxV0sI9TvTcXiFJkMd6fB644O64BRq2P/LA/+7eRvCw4GmLsXksyTHBg==" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/mustache@latest"></script>
     <script src="http://localhost:3000/socket.io/socket.io.js"></script>
     <script src="js/chat.js"></script>
