@@ -11,6 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
+    "moment": "^2.29.0",
+    "mustache": "^4.0.1",
     "socket.io": "^2.2.0"
   },
   "devDependencies": {

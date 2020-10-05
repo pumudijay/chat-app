@@ -6,12 +6,28 @@
 <body>
     Chat App
 
+    <div id="messages"></div>
+
     <form id="messageForm">
-        <input name="message" placeholder="Message"> 
+        <input name="message" placeholder="Message">
         <button type="submit">Send</button>
     </form>
 
     <button id="sendLocation">Send Location</button>
+
+    <script id="messageTemplate" type="text/html">
+        <div>
+            <p>{{message}}</p>
+        </div>
+    </script>
+
+    <script id="locationMessageTemplate" type="text/html">
+        <div>
+            <p><a href="{{url}}" target="_blank">My current location</a></p>
+        </div>
+    </script>
+
+    <script src="https://unpkg.com/mustache@latest"></script>
     <script src="http://localhost:3000/socket.io/socket.io.js"></script>
     <script src="js/chat.js"></script>
 
