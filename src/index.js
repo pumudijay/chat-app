@@ -2,7 +2,7 @@ const path = require('path')
 const http = require('http')
 const express = require('express')
 const socketio =  require('socket.io')
-const {generateMessage, generateLocationMessage } = require('./utilis/messages')
+const {generateMessage, generateLocationMessage } = require('./utils/messages')
 
 const publicDirectoryPath = path.join(__dirname, '/../public')
 const port = process.env.PORT || 3000
@@ -16,8 +16,12 @@ app.use(express.static(publicDirectoryPath))
 io.on('connection', (socket) => {
     console.log('New Websocket connection')
 
-    socket.emit('message', generateMessage('WELCOME!'))
-    socket.broadcast.emit('message', generateMessage('A new user joined!'))
+    socket.on('join', ({ username, room}) => {
+        socket.join(room)
+
+        socket.emit('message', generateMessage('WELCOME!'))
+        socket.broadcast.to(room).emit('message', generateMessage( username + ' has joined!'))
+    })
 
     socket.on('sendMessage', (message) => {
         io.emit('message', generateMessage(message))        
